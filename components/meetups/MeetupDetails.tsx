@@ -9,6 +9,10 @@ interface IMeetupDetailsProps {
 
 const MeetupDetails: React.FC<IMeetupDetailsProps> = ({meetupData}) => {
 
+  if (!meetupData) {
+    return <p>Loading...</p>;
+  }
+
   const {image, address, description, title } = meetupData;
 
   return (
