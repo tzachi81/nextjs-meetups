@@ -6,7 +6,6 @@ interface IMeetupDetailsProps {
 }
 
 const MeetupDetailsPage: React.FC<IMeetupDetailsProps> = ({meetupData}) => {
-  console.log("details", meetupData);
 
   return <MeetupDetails meetupData={meetupData}/>;
 };
