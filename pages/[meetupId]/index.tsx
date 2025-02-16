@@ -8,7 +8,7 @@ interface IMeetupDetailsProps {
 const MeetupDetailsPage: React.FC<IMeetupDetailsProps> = ({meetupData}) => {
   console.log("details", meetupData);
 
-  return <MeetupDetails  meetupData={meetupData}/>;
+  return <MeetupDetails meetupData={meetupData}/>;
 };
 
 export const getStaticPaths = async () => {

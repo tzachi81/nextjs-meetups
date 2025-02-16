@@ -1,15 +1,13 @@
-import { IMeetupData } from '@/types/meetup.types';
+import { IMeetupData, IMeetupItem } from '@/types/meetup.types';
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
 
 import { useRouter } from 'next/router';
 
 
-interface IMeetupItemProps extends Omit<IMeetupData,'description'>{
-  id: number
-}
+type TMeetupItemProps = Omit<IMeetupItem,'description'>
 
-const  MeetupItem: React.FC<IMeetupItemProps> = (props) => {
+const  MeetupItem: React.FC<TMeetupItemProps> = (props) => {
 
   const router = useRouter();
 
