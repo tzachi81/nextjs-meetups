@@ -11,7 +11,7 @@ const NewMeetupPage = () => {
   const TIMEOUT = 2000;
   type TToastTypes = "success" | "error" | "info" | "warn";
 
-  const raiseToast = (type: TToastTypes, message: string) => {
+  const raiseToast = async (type: TToastTypes, message: string) => {
     return toast[type](message, {
       autoClose: TIMEOUT,
       position: "bottom-center",
@@ -36,7 +36,7 @@ const NewMeetupPage = () => {
         raiseToast("error", error.message);
       })
       .finally(() => {
-        setTimeout(() => router.push("/"), TIMEOUT);
+        setTimeout(() => router.push("/"), 3000);
       });
   };
 

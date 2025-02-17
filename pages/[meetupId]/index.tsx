@@ -62,6 +62,8 @@ export const getStaticProps = async (context: any) => {
 
   client.close();
 
+
+  //TODO: handle no item found
   return {
     props: {
       meetupData: {
@@ -72,7 +74,7 @@ export const getStaticProps = async (context: any) => {
         description: selectedMeetup?.description,
       },
     },
-    revalidate: 60,
+    revalidate: 30,
   };
 };
 

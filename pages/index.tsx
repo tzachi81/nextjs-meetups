@@ -20,26 +20,13 @@ const Home: React.FC<IHomePageProps> = ({ meetups }) => {
   );
 };
 
-// // this code will never be executed on the client side:
-// // this code runs for every request or on-demand of some trigger
-
-// export const getServerSideProps = (context: any) => {
-//   const req = context.req;
-//   const res = context.res;
-
-//   return {
-//     props: {
-//       meetups
-//     }
-//   }
-// }
-
 //this code will never be executed on the client side:
 //revalidate: regenerate the page and data ON THE SERVER every X seconds
 export const getStaticProps = async () => {
   const meetupsCollection = client.db("meetups").collection("meetups");
 
   const results = await meetupsCollection.find().toArray();
+
 
   const meetups: IMeetupItem[] = results.map((meetup) => ({
     id: meetup._id.toString(),
@@ -48,11 +35,12 @@ export const getStaticProps = async () => {
     address: meetup.address,
   }));
 
+
   return {
     props: {
       meetups,
     },
-    revalidate: 60
+    revalidate: 1
   };
 };
 
