@@ -36,7 +36,7 @@ const NewMeetupPage = () => {
         raiseToast("error", error.message);
       })
       .finally(() => {
-        setTimeout(() => router.push("/"), 3000);
+        router.push("/");
       });
   };
 

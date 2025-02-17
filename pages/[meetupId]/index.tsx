@@ -23,8 +23,8 @@ const MeetupDetailsPage: React.FC<IMeetupDetailsProps> = ({ meetupData }) => {
 };
 
 export const getStaticPaths = async () => {
-  const clientInit = await client.connect();
-  const db = clientInit.db();
+  await client.connect();
+  const db = client.db();
   const meetupsCollection = db.collection("meetups");
   const meetups = await meetupsCollection
     .find({}, { projection: { _id: 1 } })
@@ -74,7 +74,7 @@ export const getStaticProps = async (context: any) => {
         description: selectedMeetup?.description,
       },
     },
-    revalidate: 30,
+    revalidate: 10,
   };
 };
 

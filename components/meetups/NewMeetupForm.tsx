@@ -15,7 +15,7 @@ const NewMeetupForm: React.FC<INewMeetupFormProps> = (props) => {
   const addressInputRef = useRef<HTMLInputElement>(null);
   const descriptionInputRef = useRef<HTMLTextAreaElement>(null);
 
-  function submitHandler(event: React.FormEvent<HTMLFormElement>) {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const enteredTitle = titleInputRef.current ? titleInputRef.current.value : '';
