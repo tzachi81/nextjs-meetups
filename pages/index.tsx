@@ -1,43 +1,24 @@
 import MeetupList from "../components/meetups/MeetupList";
-import Layout from "../components/layout/Layout";
-import { useEffect } from "react";
-import { IMeetupData, IMeetupItem } from "@/types/meetup.types";
-import { revalidateTag } from "next/cache";
-const meetups = [
-  {
-    id: 'm1',
-    image: "https://dummyimage.com/300x250",
-    title: "meetup title",
-    address: "some address 12345, city",
-    description: "first meetup",
-  },
-  {
-    id: 'm2',
-    image: "https://dummyimage.com/300x250",
-    title: "meetup title 2",
-    address: "some address 12345, city",
-    description: "Second meetup",
-  },
-  {
-    id: 'm3',
-    image: "https://dummyimage.com/300x250",
-    title: "meetup title 3",
-    address: "some address 12345, city",
-    description: "Third meetup",
-  },
-];
+import { IMeetupCollectionItem, IMeetupItem } from "@/types/meetup.types";
+import { client } from "./api/dbConnet";
+import Head from "next/head";
+import { Fragment } from "react";
 
-interface IHomeProps {
-  meetups: IMeetupItem[]
+interface IHomePageProps {
+  meetups: IMeetupItem[];
 }
-const Home: React.FC<IHomeProps> = ({meetups}) => {
 
+const Home: React.FC<IHomePageProps> = ({ meetups }) => {
   return (
+    <Fragment>
+      <Head>
+        <title>React Meetups</title>
+        <meta name="description" content="Manage your meetups"></meta>
+      </Head>
       <MeetupList meetups={meetups} />
+    </Fragment>
   );
-
 };
-
 
 // // this code will never be executed on the client side:
 // // this code runs for every request or on-demand of some trigger
@@ -54,14 +35,25 @@ const Home: React.FC<IHomeProps> = ({meetups}) => {
 // }
 
 //this code will never be executed on the client side:
-//revalidate: regenerate the page and data ON THE SERVER every X seconds 
-export const getStaticProps = async() => {
+//revalidate: regenerate the page and data ON THE SERVER every X seconds
+export const getStaticProps = async () => {
+  const meetupsCollection = client.db("meetups").collection("meetups");
+
+  const results = await meetupsCollection.find().toArray();
+
+  const meetups: IMeetupItem[] = results.map((meetup) => ({
+    id: meetup._id.toString(),
+    title: meetup.title,
+    image: meetup.image,
+    address: meetup.address,
+  }));
+
   return {
     props: {
-      meetups
+      meetups,
     },
     revalidate: 60
-  }
-}
+  };
+};
 
 export default Home;

@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
 import classes from './MeetupDetails.module.scss';
-import { IMeetupData, IMeetupItem } from '@/types/meetup.types';
+import { IMeetupData } from '@/types/meetup.types';
 
 
 interface IMeetupDetailsProps {
   meetupData: IMeetupData
 }
 
-const MeetupDetails: React.FC<IMeetupDetailsProps> = ({meetupData}) => {
+const MeetupDetails: React.FC<IMeetupDetailsProps> = ({ meetupData }) => {
 
   if (!meetupData) {
     return <p>Loading...</p>;
@@ -20,7 +20,7 @@ const MeetupDetails: React.FC<IMeetupDetailsProps> = ({meetupData}) => {
       <img className={classes.image} src={image} alt="meetup image" />
       <h1>{title}</h1>
       <address>{address}</address>
-      <details>{description}</details>
+      <details open>{description}</details>
     </Fragment>
   );
 };

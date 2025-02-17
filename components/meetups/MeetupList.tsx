@@ -1,25 +1,31 @@
-import { IMeetupItem } from '@/types/meetup.types';
-import MeetupItem from '../../components/meetups/MeetupItem';
-import classes from './MeetupList.module.css';
+import { IMeetupCollectionItem, IMeetupItem } from "@/types/meetup.types";
+import MeetupItem from "../../components/meetups/MeetupItem";
+import classes from "./MeetupList.module.css";
+
 
 interface IMeetupListProps {
-  meetups: IMeetupItem[];
-};
+  meetups: IMeetupItem[]
+}
 
-export const MeetupList:React.FC<IMeetupListProps> = (props) => {
+export const MeetupList: React.FC<IMeetupListProps> = ({ meetups }) => {
+  
   return (
     <ul className={classes.list}>
-      {props.meetups.map((meetup) => (
-        <MeetupItem
-          key={meetup.id}
-          id={meetup.id}
-          image={meetup.image}
-          title={meetup.title}
-          address={meetup.address}
-        />
-      ))}
+      {meetups.map((meetup: IMeetupItem) => {
+        const {id, image, title, address} = meetup;
+
+        return (
+          <MeetupItem
+            key={id}
+            id={id}
+            image={image}
+            title={title}
+            address={address}
+          />
+        );
+      })}
     </ul>
   );
-}
+};
 
 export default MeetupList;

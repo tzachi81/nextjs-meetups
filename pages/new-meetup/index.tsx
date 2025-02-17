@@ -1,8 +1,23 @@
 import { IMeetupData } from "@/types/meetup.types";
 import NewMeetupForm from "../../components/meetups/NewMeetupForm";
 import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/router";
+import { Fragment } from "react";
+import Head from "next/head";
 
 const NewMeetupPage = () => {
+  const router = useRouter();
+
+  const TIMEOUT = 2000;
+  type TToastTypes = "success" | "error" | "info" | "warn";
+
+  const raiseToast = (type: TToastTypes, message: string) => {
+    return toast[type](message, {
+      autoClose: TIMEOUT,
+      position: "bottom-center",
+    });
+  };
+
   const newMeetupHandler = async (meetupData: IMeetupData) => {
     await fetch("/api/new-meetup", {
       method: "POST",
@@ -10,24 +25,31 @@ const NewMeetupPage = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
-      .then((data) =>
-        toast.success(`Meetup ${JSON.stringify(data.details.title)} was created successfuly`, {
-          autoClose: 3000,
-          position: "bottom-center",
-        })
-      )
+      .then(() => {
+        const message = `Meetup ${JSON.stringify(
+          meetupData.title
+        )} was created successfuly`;
+        raiseToast("success", message);
+      })
       .catch((error: Error) => {
         console.error(error);
-        toast.error(error.message, {
-          autoClose: 3000,
-          position: "bottom-center",
-        });
+        raiseToast("error", error.message);
+      })
+      .finally(() => {
+        setTimeout(() => router.push("/"), TIMEOUT);
       });
   };
 
   return (
-    <>
+    <Fragment>
+
+      <Head>
+        <title>Create New Meetup</title>
+        <meta name="description" content="Create new meetup"></meta>
+      </Head>
+
       <NewMeetupForm onAddMeetup={newMeetupHandler} />
+
       <ToastContainer
         position="bottom-center"
         autoClose={3000}
@@ -36,7 +58,7 @@ const NewMeetupPage = () => {
         draggable
         pauseOnHover
       />
-    </>
+    </Fragment>
   );
 };
 
