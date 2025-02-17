@@ -1,14 +1,15 @@
 import MeetupList from "../components/meetups/MeetupList";
-import { IMeetupCollectionItem, IMeetupItem } from "@/types/meetup.types";
+import { IMeetupItem } from "@/types/meetup.types";
 import { client } from "./api/dbConnet";
 import Head from "next/head";
 import { Fragment } from "react";
+import { NextPage } from "next";
 
 interface IHomePageProps {
   meetups: IMeetupItem[];
 }
 
-const Home: React.FC<IHomePageProps> = ({ meetups }) => {
+const Home: NextPage<IHomePageProps> = ({ meetups }) => {
   return (
     <Fragment>
       <Head>

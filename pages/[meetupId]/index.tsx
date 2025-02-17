@@ -4,12 +4,13 @@ import { client } from "../api/dbConnet";
 import { ObjectId } from "mongodb";
 import { Fragment } from "react";
 import Head from "next/head";
+import { NextPage } from "next";
 
 interface IMeetupDetailsProps {
   meetupData: IMeetupData;
 }
 
-const MeetupDetailsPage: React.FC<IMeetupDetailsProps> = ({ meetupData }) => {
+const MeetupDetailsPage: NextPage<IMeetupDetailsProps> = ({ meetupData }) => {
   return (
     <Fragment>
       <Head>

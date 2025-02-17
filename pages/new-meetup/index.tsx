@@ -4,8 +4,9 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
 import Head from "next/head";
+import { NextPage } from "next";
 
-const NewMeetupPage = () => {
+const NewMeetupPage: NextPage = () => {
   const router = useRouter();
 
   const TIMEOUT = 2000;
