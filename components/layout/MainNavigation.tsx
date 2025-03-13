@@ -9,7 +9,7 @@ export const MainNavigation: React.FC<IMainNavigationProps> = () => {
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>React Meetups</div>
+      <div className={classes.logo}>NextJS Meetups</div>
       <nav>
         <ul>
           <li>

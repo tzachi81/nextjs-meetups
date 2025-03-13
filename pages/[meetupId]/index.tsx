@@ -75,7 +75,7 @@ export const getStaticProps = async (context: any) => {
         description: selectedMeetup?.description,
       },
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 

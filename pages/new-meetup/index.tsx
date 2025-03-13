@@ -37,7 +37,7 @@ const NewMeetupPage: NextPage = () => {
         raiseToast("error", error.message);
       })
       .finally(() => {
-        router.push("/");
+        setTimeout(() => router.push("/"), TIMEOUT);
       });
   };
 
