@@ -55,9 +55,6 @@ const NewMeetupPage: NextPage = () => {
         position="bottom-center"
         autoClose={3000}
         hideProgressBar={false}
-        closeOnClick
-        draggable
-        pauseOnHover
       />
     </Fragment>
   );
