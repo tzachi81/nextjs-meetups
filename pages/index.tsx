@@ -1,6 +1,6 @@
 import MeetupList from "../components/meetups/MeetupList";
 import { IMeetupItem } from "@/types/meetup.types";
-import { client } from "./api/dbConnet";
+import { client } from "./api/dbConnect";
 import Head from "next/head";
 import { Fragment } from "react";
 import { NextPage } from "next";
@@ -43,7 +43,7 @@ export const getStaticProps = async () => {
     props: {
       meetups,
     },
-    revalidate: 10
+    revalidate: 1
   };
 };
 

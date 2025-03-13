@@ -1,4 +1,4 @@
-import { IMeetupCollectionItem, IMeetupItem } from "@/types/meetup.types";
+import { IMeetupItem } from "@/types/meetup.types";
 import MeetupItem from "../../components/meetups/MeetupItem";
 import classes from "./MeetupList.module.css";
 
@@ -8,9 +8,9 @@ interface IMeetupListProps {
 }
 
 export const MeetupList: React.FC<IMeetupListProps> = ({ meetups }) => {
-  
+
   return (
-    <ul className={classes.list}>
+    meetups?.length > 0 && <ul className={classes.list}>
       {meetups.map((meetup: IMeetupItem) => {
         const {id, image, title, address} = meetup;
 

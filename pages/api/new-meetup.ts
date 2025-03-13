@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { client } from './dbConnet';
+import { client } from './dbConnect';
 
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
 

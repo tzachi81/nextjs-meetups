@@ -1,6 +1,6 @@
 import MeetupDetails from "@/components/meetups/MeetupDetails";
 import { IMeetupCollectionItem, IMeetupData } from "@/types/meetup.types";
-import { client } from "../api/dbConnet";
+import { client } from "../api/dbConnect";
 import { ObjectId } from "mongodb";
 import { Fragment } from "react";
 import Head from "next/head";
