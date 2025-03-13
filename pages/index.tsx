@@ -15,6 +15,11 @@ const Home: NextPage<IHomePageProps> = ({ meetups }) => {
       <Head>
         <title>React Meetups</title>
         <meta name="description" content="Manage your meetups"></meta>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@400;700&display=swap"
+            rel="stylesheet"
+            type="text/css"
+          />
       </Head>
       <MeetupList meetups={meetups} />
     </Fragment>
