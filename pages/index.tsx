@@ -13,7 +13,7 @@ const Home: NextPage<IHomePageProps> = ({ meetups }) => {
   return (
     <Fragment>
       <Head>
-        <title>({window.location.hostname}) NextJS Meetups</title>
+        <title>NextJS Meetups</title>
         <meta name="description" content="Manage your meetups"></meta>
       </Head>
       <MeetupList meetups={meetups} />
